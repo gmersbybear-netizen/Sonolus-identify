@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sonolus Identify</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("background.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel {
+    background: rgba(255,255,255,0.9);
+    padding: 25px;
+    border-radius: 25px;
+    width: 320px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+label {
+    font-size: 14px;
+    color: #444;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    margin: 8px 0 15px 0;
+    border-radius: 20px;
+    border: none;
+    background: #f0f0f0;
+    text-align: center;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: none;
+    background: #22c55e;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+#error {
+    color: red;
+    margin-top: 10px;
+}
+
+#download {
+    display: none;
+    margin-top: 15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="panel">
+    <h2>Please identify yourself to the server</h2>
+
+```
+<form onsubmit="login(event)">
+    <label>Your TikTok username</label><br>
+    <input type="text" id="user" placeholder="..." required>
+
+    <label>Your password</label><br>
+    <input type="password" id="pass" placeholder="..." required>
+
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<div id="error"></div>
+
+<div id="download">
+    <br>
+    <a id="link" href="#" target="_blank">
+        <button>Download Server</button>
+    </a>
+</div>
+```
+
+</div>
+
+<script>
+// ===== CONTAS =====
+var users = {
+    "felipe": {
+        password: "rush2026",
+        link: "https://www.mediafire.com/file/gvsmglybjckpovp/%25E2%259C%25B6.scp/file"
+    },
+    "colab1": {
+        password: "1234",
+        link: "https://www.mediafire.com/file/gvsmglybjckpovp/%25E2%259C%25B6.scp/file"
+    }
+};
+
+// ===== LOGIN =====
+function login(event) {
+    event.preventDefault(); // impede recarregar a página
+
+    var u = document.getElementById("user").value;
+    var p = document.getElementById("pass").value;
+
+    if (users[u] && users[u].password === p) {
+        document.getElementById("download").style.display = "block";
+        document.getElementById("link").href = users[u].link;
+        document.getElementById("error").innerText = "Access granted";
+    } else {
+        document.getElementById("error").innerText = "Access denied";
+    }
+}
+</script>
+
+</body>
+</html>
